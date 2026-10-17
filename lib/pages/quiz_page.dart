@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'result_page.dart';
+import 'package:uts_pm1/data/data_dummy.dart';
 
 
 class QuizPage extends StatefulWidget {
@@ -16,36 +17,7 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
-  final List<Map<String, dynamic>> questions = [
-    {
-      'question':
-          'Manakah bahasa pemrograman yang digunakan untuk mengembangkan aplikasi Flutter?',
-      'options': ['Java', 'Dart', 'Python', 'PHP'],
-      'answer': 1,
-    },
-    {
-      'question':
-          'Widget apa yang digunakan untuk UI yang tidak memiliki state?',
-      'options': [
-        'StatefulWidget',
-        'StatelessWidget',
-        'InheritedWidget',
-        'StreamBuilder',
-      ],
-      'answer': 1,
-    },
-    {
-      'question':
-          'File utama untuk menjalankan aplikasi Flutter biasanya adalah?',
-      'options': [
-        'home.dart',
-        'app.dart',
-        'main.dart',
-        'index.dart',
-      ],
-      'answer': 2,
-    },
-  ];
+  final List<Map<String, dynamic>> questions = dummyQuestions;
 
   int currentQuestionIndex = 0;
 
@@ -62,7 +34,25 @@ class _QuizPageState extends State<QuizPage> {
   void _selectAnswer(int index) {
     setState(() {
       selectedAnswers[currentQuestionIndex] = index;
+      final int correctAnswer = questions[currentQuestionIndex]['correctAnswer'];
+
+      final bool isCorrect = selectedAnswers[currentQuestionIndex] == correctAnswer;
     });
+  }
+
+  int _calculateCorrectAnswers() {
+    int correctCount = 0;
+
+    for (int i = 0; i < questions.length; i++) {
+      final int? selectedAnswer = selectedAnswers[i];
+      final int correctAnswer = questions[i]['correctAnswer'] as int;
+
+      if (selectedAnswer == correctAnswer) {
+        correctCount++;
+      }
+    }
+
+    return correctCount;
   }
 
   void _goBack() {
@@ -81,14 +71,22 @@ class _QuizPageState extends State<QuizPage> {
     });
   }
 
+  
   void _submitQuiz() {
+    final int correctAnswers = _calculateCorrectAnswers();
+
     Navigator.push(
       context,
       MaterialPageRoute<void>(
-        builder: (context) => ResultPage(userName: widget.userName),
+        builder: (context) => ResultPage(
+          userName: widget.userName,
+          correctAnswers: correctAnswers,
+          totalQuestions: questions.length,
+        ),
       ),
     );
   }
+
 
   @override
   Widget build(BuildContext context) {
