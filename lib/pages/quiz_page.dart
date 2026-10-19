@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'result_page.dart';
 import 'package:uts_pm1/data/data_dummy.dart';
@@ -34,9 +33,6 @@ class _QuizPageState extends State<QuizPage> {
   void _selectAnswer(int index) {
     setState(() {
       selectedAnswers[currentQuestionIndex] = index;
-      final int correctAnswer = questions[currentQuestionIndex]['correctAnswer'];
-
-      final bool isCorrect = selectedAnswers[currentQuestionIndex] == correctAnswer;
     });
   }
 
@@ -82,6 +78,8 @@ class _QuizPageState extends State<QuizPage> {
           userName: widget.userName,
           correctAnswers: correctAnswers,
           totalQuestions: questions.length,
+          questions: questions,
+          selectedAnswers: selectedAnswers,
         ),
       ),
     );
@@ -125,33 +123,7 @@ class _QuizPageState extends State<QuizPage> {
                       ),
                     ),
                   ),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 12,
-                      vertical: 8,
-                    ),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFE1F7F3),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: const Row(
-                      children: [
-                        Icon(
-                          Icons.timer_outlined,
-                          size: 18,
-                          color: Color(0xFF16A6A1),
-                        ),
-                        SizedBox(width: 5),
-                        Text(
-                          '00:30',
-                          style: TextStyle(
-                            color: Color(0xFF16A6A1),
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  
                 ],
               ),
 

@@ -91,14 +91,8 @@ class _HomePageState extends State<HomePage> with RestorationMixin {
                         child: const Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Icon(
-                              Icons.auto_awesome,
-                              color: Color(0xFF16A6A1),
-                              size: 18,
-                            ),
-                            SizedBox(width: 8),
                             Text(
-                              'LET’S PLAY & LEARN',
+                              'FUN QUIZ',
                               style: TextStyle(
                                 color: Color(0xFF138A86),
                                 fontSize: 12,

@@ -1,18 +1,19 @@
-
 import 'package:flutter/material.dart';
-import './quiz_page.dart';
-
 
 class ResultPage extends StatelessWidget {
   final String userName;
   final int correctAnswers;
   final int totalQuestions;
+  final List<Map<String, dynamic>> questions;
+  final Map<int, int> selectedAnswers;
 
   const ResultPage({
     super.key,
     required this.userName,
     required this.correctAnswers,
     required this.totalQuestions,
+    required this.questions,
+    required this.selectedAnswers,
   });
 
   @override
@@ -28,11 +29,10 @@ class ResultPage extends StatelessWidget {
         title: const Text('Hasil Kuis'),
         backgroundColor: const Color(0xFFF7F9FC),
       ),
-      body: Center(
-        child: Padding(
+      body: SafeArea(
+        child: SingleChildScrollView(
           padding: const EdgeInsets.all(24),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Icon(
                 Icons.emoji_events_rounded,
@@ -103,6 +103,38 @@ class ResultPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 32),
+              const Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Pembahasan Soal',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w700,
+                    color: Color(0xFF202B3C),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 12),
+              ...List.generate(questions.length, (i) {
+                final question = questions[i];
+                final options = question['options'] as List;
+                final int correctIndex = question['correctAnswer'] as int;
+                final int? selectedIndex = selectedAnswers[i];
+
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 12),
+                  child: _QuestionReviewCard(
+                    number: i + 1,
+                    question: question['question'] as String,
+                    correctAnswer: options[correctIndex].toString(),
+                    selectedAnswer: selectedIndex == null
+                        ? null
+                        : options[selectedIndex].toString(),
+                    isCorrect: selectedIndex == correctIndex,
+                  ),
+                );
+              }),
+              const SizedBox(height: 20),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
@@ -170,6 +202,139 @@ class _ResultCard extends StatelessWidget {
             style: const TextStyle(
               fontSize: 13,
               color: Color(0xFF7B8798),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _QuestionReviewCard extends StatelessWidget {
+  final int number;
+  final String question;
+  final String correctAnswer;
+  final String? selectedAnswer; // null = tidak dijawab
+  final bool isCorrect;
+
+  const _QuestionReviewCard({
+    required this.number,
+    required this.question,
+    required this.correctAnswer,
+    required this.selectedAnswer,
+    required this.isCorrect,
+  });
+
+  static const Color _green = Color(0xFF16A6A1);
+  static const Color _red = Color(0xFFE05D5D);
+
+  @override
+  Widget build(BuildContext context) {
+    final Color statusColor = isCorrect ? _green : _red;
+
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: statusColor.withValues(alpha: 0.4)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Icon(
+                isCorrect ? Icons.check_circle_rounded : Icons.cancel_rounded,
+                color: statusColor,
+                size: 20,
+              ),
+              const SizedBox(width: 8),
+              Text(
+                'Soal $number',
+                style: TextStyle(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w700,
+                  color: statusColor,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Text(
+            question,
+            style: const TextStyle(
+              fontSize: 15,
+              height: 1.4,
+              fontWeight: FontWeight.w600,
+              color: Color(0xFF202B3C),
+            ),
+          ),
+          const SizedBox(height: 12),
+          if (isCorrect)
+            _AnswerRow(
+              label: 'Jawabanmu (Benar)',
+              answer: correctAnswer,
+              color: _green,
+            )
+          else ...[
+            _AnswerRow(
+              label: 'Jawabanmu',
+              answer: selectedAnswer ?? 'Tidak dijawab',
+              color: _red,
+            ),
+            const SizedBox(height: 8),
+            _AnswerRow(
+              label: 'Jawaban benar',
+              answer: correctAnswer,
+              color: _green,
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+}
+
+class _AnswerRow extends StatelessWidget {
+  final String label;
+  final String answer;
+  final Color color;
+
+  const _AnswerRow({
+    required this.label,
+    required this.answer,
+    required this.color,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+      decoration: BoxDecoration(
+        color: color.withValues(alpha: 0.1),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            label,
+            style: TextStyle(
+              fontSize: 11,
+              fontWeight: FontWeight.w600,
+              color: color,
+            ),
+          ),
+          const SizedBox(height: 2),
+          Text(
+            answer,
+            style: const TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+              color: Color(0xFF202B3C),
             ),
           ),
         ],
