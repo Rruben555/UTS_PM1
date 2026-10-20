@@ -33,7 +33,6 @@ class AppColors extends ThemeExtension<AppColors> {
     required this.warnText,
   });
 
-  // Warna aksen tetap (sama di light & dark mode).
   static const Color primary = Color(0xFF16A6A1);
   static const Color danger = Color(0xFFE05D5D);
   static const Color gold = Color(0xFFFFB547);

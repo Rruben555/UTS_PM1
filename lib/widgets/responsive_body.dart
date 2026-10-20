@@ -3,17 +3,11 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import '../utils/responsive.dart';
 
-/// Pembungkus isi halaman:
-///  - aman dari notch / status bar (SafeArea),
-///  - bisa di-scroll sehingga tidak overflow di layar kecil / landscape,
-///  - konten dibatasi lebarnya dan diletakkan di tengah (tablet / web).
 class ResponsiveBody extends StatelessWidget {
   final Widget child;
 
-  /// true = konten diletakkan di tengah layar secara vertikal.
   final bool centerVertically;
 
-  /// Padding atas-bawah dasar (akan diskalakan sesuai layar).
   final double verticalPadding;
 
   const ResponsiveBody({

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../data/app_colors.dart';
 import '../utils/responsive.dart';
 
-/// Satu pilihan jawaban (A, B, C, D) pada halaman kuis.
 class AnswerOption extends StatelessWidget {
   final String letter;
   final String answer;

@@ -31,7 +31,6 @@ class MyApp extends StatelessWidget {
         elevation: 0,
         scrolledUnderElevation: 0,
       ),
-      // Daftarkan palet agar ikut beranimasi bersama tema.
       extensions: <ThemeExtension<dynamic>>[colors],
       useMaterial3: true,
     );
@@ -39,13 +38,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Gunakan ValueListenableBuilder untuk mendengarkan perubahan themeMode
     return ValueListenableBuilder<ThemeMode>(
       valueListenable: ThemeController.themeMode,
       builder: (context, currentTheme, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          themeMode: currentTheme, // Mengatur mode tema (light/dark)
+          themeMode: currentTheme,
           theme: _buildTheme(Brightness.light, AppColors.light),
           darkTheme: _buildTheme(Brightness.dark, AppColors.dark),
           home: const HomePage(),

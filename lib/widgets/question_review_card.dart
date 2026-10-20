@@ -3,13 +3,11 @@ import '../data/app_colors.dart';
 import '../utils/responsive.dart';
 import 'answer_row.dart';
 
-/// Kartu pembahasan satu soal pada halaman hasil.
-/// Jika benar: tampil satu jawaban. Jika salah: jawaban pengguna + jawaban benar.
 class QuestionReviewCard extends StatelessWidget {
   final int number;
   final String question;
   final String correctAnswer;
-  final String? selectedAnswer; // null = tidak dijawab
+  final String? selectedAnswer;
   final bool isCorrect;
 
   const QuestionReviewCard({

@@ -23,8 +23,7 @@ class ResultPage extends StatelessWidget {
     required this.selectedAnswers,
   });
 
-  /// Icon hasil berdasarkan skor:
-  /// < 60 menangis, 60-79 jempol, 80-99 senang, 100 piala.
+
   ({IconData icon, Color color}) _iconForScore(int score) {
     if (score >= 100) {
       return (icon: Icons.emoji_events_rounded, color: AppColors.gold);

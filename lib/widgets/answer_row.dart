@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../data/app_colors.dart';
 import '../utils/responsive.dart';
 
-/// Kotak berlabel yang menampilkan satu jawaban (milik pengguna / jawaban benar).
 class AnswerRow extends StatelessWidget {
   final String label;
   final String answer;

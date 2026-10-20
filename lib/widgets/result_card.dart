@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../data/app_colors.dart';
 import '../utils/responsive.dart';
 
-/// Kartu ringkasan angka (mis. jumlah jawaban benar / salah).
 class ResultCard extends StatelessWidget {
   final String title;
   final String value;

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../data/app_colors.dart';
 import '../utils/responsive.dart';
 
-/// Tombol outline. Jika [onPressed] null, tombol tampil nonaktif.
 class SecondaryButton extends StatelessWidget {
   final String text;
   final VoidCallback? onPressed;
