@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import '../data/app_colors.dart';
+import '../widgets/theme_toggle.dart';
 import '../widgets/primary_button.dart';
 import 'quiz_page.dart';
 
@@ -61,7 +62,14 @@ class _HomePageState extends State<HomePage> with RestorationMixin {
 
   @override
   Widget build(BuildContext context) {
+    final c = AppColors.of(context);
     return Scaffold(
+        appBar: AppBar(
+        title: const Text('Fun Quiz'),
+        actions: const [
+          ThemeToggle(),
+        ],
+      ),
       body: SafeArea(
         child: LayoutBuilder(
           builder: (context, constraints) {
@@ -85,16 +93,16 @@ class _HomePageState extends State<HomePage> with RestorationMixin {
                           vertical: 8,
                         ),
                         decoration: BoxDecoration(
-                          color: const Color(0xFFE1F7F3),
+                          color: c.accentSoft,
                           borderRadius: BorderRadius.circular(30),
                         ),
-                        child: const Row(
+                        child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Text(
                               'FUN QUIZ',
                               style: TextStyle(
-                                color: Color(0xFF138A86),
+                                color: c.accentSoftText,
                                 fontSize: 12,
                                 fontWeight: FontWeight.w700,
                                 letterSpacing: 1,
@@ -105,19 +113,19 @@ class _HomePageState extends State<HomePage> with RestorationMixin {
                       ),
                     ),
                     SizedBox(height: constraints.maxHeight * 0.025),
-                    const Center(
+                    Center(
                       child: Text(
                         'Uji Pengetahuanmu!',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 28,
                           fontWeight: FontWeight.w700,
-                          color: Color(0xFF202B3C),
+                          color: c.textPrimary,
                         ),
                       ),
                     ),
                     const SizedBox(height: 12),
-                    const Center(
+                    Center(
                       child: Text(
                         'Jawab pertanyaan, kumpulkan poin, '
                         'dan lihat seberapa hebat dirimu.',
@@ -125,17 +133,17 @@ class _HomePageState extends State<HomePage> with RestorationMixin {
                         style: TextStyle(
                           fontSize: 14,
                           height: 1.7,
-                          color: Color(0xFF7B8798),
+                          color: c.textSecondary,
                         ),
                       ),
                     ),
                     const SizedBox(height: 32),
-                    const Text(
+                    Text(
                       'Siapa namamu?',
                       style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
-                        color: Color(0xFF202B3C),
+                        color: c.textPrimary,
                       ),
                     ),
                     const SizedBox(height: 12),
@@ -151,21 +159,21 @@ class _HomePageState extends State<HomePage> with RestorationMixin {
                           color: Color(0xFF16A6A1),
                         ),
                         filled: true,
-                        fillColor: Colors.white,
+                        fillColor: c.surface,
                         contentPadding: const EdgeInsets.symmetric(
                           horizontal: 18,
                           vertical: 18,
                         ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(16),
-                          borderSide: const BorderSide(
-                            color: Color(0xFFE2E8F0),
+                          borderSide: BorderSide(
+                            color: c.border,
                           ),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(16),
-                          borderSide: const BorderSide(
-                            color: Color(0xFFE2E8F0),
+                          borderSide: BorderSide(
+                            color: c.border,
                           ),
                         ),
                         focusedBorder: OutlineInputBorder(
@@ -184,12 +192,12 @@ class _HomePageState extends State<HomePage> with RestorationMixin {
                       onPressed: _startQuiz,
                     ),
                     const SizedBox(height: 20),
-                    const Center(
+                    Center(
                       child: Text(
                         'Siap untuk tantangan hari ini?',
                         style: TextStyle(
                           fontSize: 12,
-                          color: Color(0xFF9AA5B4),
+                          color: c.textHint,
                         ),
                       ),
                     ),

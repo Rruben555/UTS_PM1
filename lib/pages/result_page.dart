@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../data/app_colors.dart';
+import '../widgets/theme_toggle.dart';
 
 class ResultPage extends StatelessWidget {
   final String userName;
@@ -16,46 +18,78 @@ class ResultPage extends StatelessWidget {
     required this.selectedAnswers,
   });
 
+  /// Icon hasil berdasarkan skor:
+  /// < 60 menangis, 60-79 jempol, 80-99 senang, 100 piala.
+  ({IconData icon, Color color}) _iconForScore(int score) {
+    if (score >= 100) {
+      return (
+        icon: Icons.emoji_events_rounded,
+        color: const Color(0xFFFFB547),
+      );
+    }
+    if (score >= 80) {
+      return (
+        icon: Icons.sentiment_very_satisfied_rounded,
+        color: const Color(0xFF16A6A1),
+      );
+    }
+    if (score >= 60) {
+      return (
+        icon: Icons.thumb_up_rounded,
+        color: const Color(0xFF3B82F6),
+      );
+    }
+    return (
+      icon: Icons.sentiment_very_dissatisfied_rounded,
+      color: const Color(0xFFE05D5D),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    final c = AppColors.of(context);
     final int wrongAnswers = totalQuestions - correctAnswers;
     final int score = totalQuestions == 0
         ? 0
         : (correctAnswers / totalQuestions * 100).round();
+    final resultIcon = _iconForScore(score);
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF7F9FC),
+      backgroundColor: c.background,
       appBar: AppBar(
         title: const Text('Hasil Kuis'),
-        backgroundColor: const Color(0xFFF7F9FC),
+        backgroundColor: c.background,
+        actions: const [
+          ThemeToggle(),
+        ],
       ),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(24),
           child: Column(
             children: [
-              const Icon(
-                Icons.emoji_events_rounded,
+              Icon(
+                resultIcon.icon,
                 size: 80,
-                color: Color(0xFFFFB547),
+                color: resultIcon.color,
               ),
               const SizedBox(height: 20),
               Text(
                 'Selamat, $userName!',
                 textAlign: TextAlign.center,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFF202B3C),
+                  color: c.textPrimary,
                 ),
               ),
               const SizedBox(height: 12),
-              const Text(
+              Text(
                 'Kamu telah menyelesaikan kuis.',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 15,
-                  color: Color(0xFF7B8798),
+                  color: c.textSecondary,
                 ),
               ),
               const SizedBox(height: 28),
@@ -67,11 +101,11 @@ class ResultPage extends StatelessWidget {
                   color: Color(0xFF16A6A1),
                 ),
               ),
-              const Text(
+              Text(
                 'Skor kamu',
                 style: TextStyle(
                   fontSize: 16,
-                  color: Color(0xFF7B8798),
+                  color: c.textSecondary,
                 ),
               ),
               const SizedBox(height: 28),
@@ -97,20 +131,20 @@ class ResultPage extends StatelessWidget {
               const SizedBox(height: 12),
               Text(
                 'Total pertanyaan: $totalQuestions',
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 14,
-                  color: Color(0xFF7B8798),
+                  color: c.textSecondary,
                 ),
               ),
               const SizedBox(height: 32),
-              const Align(
+              Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
                   'Pembahasan Soal',
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w700,
-                    color: Color(0xFF202B3C),
+                    color: c.textPrimary,
                   ),
                 ),
               ),
@@ -176,13 +210,14 @@ class _ResultCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final c = AppColors.of(context);
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: c.surface,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: const Color(0xFFE2E8F0),
+          color: c.border,
         ),
       ),
       child: Column(
@@ -199,9 +234,9 @@ class _ResultCard extends StatelessWidget {
           Text(
             title,
             textAlign: TextAlign.center,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 13,
-              color: Color(0xFF7B8798),
+              color: c.textSecondary,
             ),
           ),
         ],
@@ -230,13 +265,14 @@ class _QuestionReviewCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final c = AppColors.of(context);
     final Color statusColor = isCorrect ? _green : _red;
 
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: c.surface,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(color: statusColor.withValues(alpha: 0.4)),
       ),
@@ -264,11 +300,11 @@ class _QuestionReviewCard extends StatelessWidget {
           const SizedBox(height: 10),
           Text(
             question,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 15,
               height: 1.4,
               fontWeight: FontWeight.w600,
-              color: Color(0xFF202B3C),
+              color: c.textPrimary,
             ),
           ),
           const SizedBox(height: 12),
@@ -310,6 +346,7 @@ class _AnswerRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final c = AppColors.of(context);
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
@@ -331,10 +368,10 @@ class _AnswerRow extends StatelessWidget {
           const SizedBox(height: 2),
           Text(
             answer,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w600,
-              color: Color(0xFF202B3C),
+              color: c.textPrimary,
             ),
           ),
         ],
