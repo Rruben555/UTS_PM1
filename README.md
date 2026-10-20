@@ -1,8 +1,12 @@
 # Fun Quiz
 ## Identitas Mahasiswa
 Nama : Ruben Sorisena Siregar
+
 NIM : 241401040
+
 Lab : PM 1
+
+
 Informasi Aplikasi
 
 ## Nama Aplikasi: Fun Quiz
