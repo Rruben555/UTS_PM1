@@ -1,17 +1,25 @@
-# uts_pm1
+# Fun Quiz
+Identitas Mahasiswa
+Nama : Ruben Sorisena Siregar
+NIM : 241401040
+Lab : PM 1
+Informasi Aplikasi
 
-A new Flutter project.
+Nama Aplikasi: Fun Quiz
 
-## Getting Started
+Deskripsi: Aplikasi kuis pilihan ganda berbasis Flutter. Pengguna memasukkan nama, menjawab serangkaian pertanyaan, lalu melihat skor akhir beserta pembahasan setiap soal.
 
-This project is a starting point for a Flutter application.
+Fitur:
 
-A few resources to get you started if this is your first Flutter project:
+* Input nama pengguna sebelum memulai kuis
+* 5 pertanyaan pilihan ganda (data dummy lokal)
+* Navigasi soal sebelumnya / berikutnya dengan indikator progres
+* Halaman hasil: skor, jumlah jawaban benar dan salah
+* Pembahasan tiap soal: jawaban benar ditampilkan satu, jawaban salah menampilkan jawaban pengguna dan jawaban yang benar
+* Icon hasil menyesuaikan skor (di bawah 60 menangis, 60+ jempol, 80+ senang, 100 piala)
+* Dark mode dan light mode
+* Tampilan responsif untuk HP, tablet, dan web
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+Link Video:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Link Screenshot:
