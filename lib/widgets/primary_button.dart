@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../data/app_colors.dart';
+import '../utils/responsive.dart';
 
 class PrimaryButton extends StatelessWidget {
   final String text;
@@ -19,11 +21,11 @@ class PrimaryButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor: const Color(0xFF16A6A1),
+          backgroundColor: AppColors.primary,
           foregroundColor: Colors.white,
-          padding: const EdgeInsets.symmetric(vertical: 16),
+          padding: EdgeInsets.symmetric(vertical: context.sz(16)),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(context.sz(16)),
           ),
           elevation: 0,
         ),
@@ -32,14 +34,14 @@ class PrimaryButton extends StatelessWidget {
           children: [
             Text(
               text,
-              style: const TextStyle(
-                fontSize: 16,
+              style: TextStyle(
+                fontSize: context.sp(16),
                 fontWeight: FontWeight.w600,
               ),
             ),
             if (icon != null) ...[
-              const SizedBox(width: 10),
-              Icon(icon, size: 20),
+              SizedBox(width: context.sz(10)),
+              Icon(icon, size: context.sz(20)),
             ],
           ],
         ),

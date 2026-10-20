@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import '../data/app_colors.dart';
-import '../widgets/theme_toggle.dart';
+import '../utils/responsive.dart';
 import '../widgets/primary_button.dart';
+import '../widgets/responsive_body.dart';
+import '../widgets/theme_toggle.dart';
 import 'quiz_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -63,149 +65,138 @@ class _HomePageState extends State<HomePage> with RestorationMixin {
   @override
   Widget build(BuildContext context) {
     final c = AppColors.of(context);
+    final double fieldRadius = context.sz(16);
+
     return Scaffold(
-        appBar: AppBar(
+      appBar: AppBar(
         title: const Text('Fun Quiz'),
         actions: const [
           ThemeToggle(),
         ],
       ),
-      body: SafeArea(
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            return SingleChildScrollView(
-              padding: EdgeInsets.symmetric(
-                horizontal: constraints.maxWidth * 0.07,
-                vertical: 24,
-              ),
-              child: ConstrainedBox(
-                constraints: BoxConstraints(
-                  minHeight: constraints.maxHeight - 48,
+      body: ResponsiveBody(
+        centerVertically: true,
+        verticalPadding: 24,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Center(
+              child: Container(
+                padding: EdgeInsets.symmetric(
+                  horizontal: context.sz(16),
+                  vertical: context.sz(8),
                 ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Center(
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 16,
-                          vertical: 8,
-                        ),
-                        decoration: BoxDecoration(
-                          color: c.accentSoft,
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(
-                              'FUN QUIZ',
-                              style: TextStyle(
-                                color: c.accentSoftText,
-                                fontSize: 12,
-                                fontWeight: FontWeight.w700,
-                                letterSpacing: 1,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: constraints.maxHeight * 0.025),
-                    Center(
-                      child: Text(
-                        'Uji Pengetahuanmu!',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 28,
-                          fontWeight: FontWeight.w700,
-                          color: c.textPrimary,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-                    Center(
-                      child: Text(
-                        'Jawab pertanyaan, kumpulkan poin, '
-                        'dan lihat seberapa hebat dirimu.',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 14,
-                          height: 1.7,
-                          color: c.textSecondary,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 32),
-                    Text(
-                      'Siapa namamu?',
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w600,
-                        color: c.textPrimary,
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-                    TextField(
-                      controller: _nameController.value,
-                      textCapitalization: TextCapitalization.words,
-                      textInputAction: TextInputAction.done,
-                      onSubmitted: (_) => _startQuiz(),
-                      decoration: InputDecoration(
-                        hintText: 'Masukkan nama kamu',
-                        prefixIcon: const Icon(
-                          Icons.person_outline,
-                          color: Color(0xFF16A6A1),
-                        ),
-                        filled: true,
-                        fillColor: c.surface,
-                        contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 18,
-                          vertical: 18,
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(16),
-                          borderSide: BorderSide(
-                            color: c.border,
-                          ),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(16),
-                          borderSide: BorderSide(
-                            color: c.border,
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(16),
-                          borderSide: const BorderSide(
-                            color: Color(0xFF16A6A1),
-                            width: 1.5,
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                    PrimaryButton(
-                      text: 'Mulai Quiz',
-                      icon: Icons.arrow_forward_rounded,
-                      onPressed: _startQuiz,
-                    ),
-                    const SizedBox(height: 20),
-                    Center(
-                      child: Text(
-                        'Siap untuk tantangan hari ini?',
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: c.textHint,
-                        ),
-                      ),
-                    ),
-                  ],
+                decoration: BoxDecoration(
+                  color: c.accentSoft,
+                  borderRadius: BorderRadius.circular(context.sz(30)),
+                ),
+                child: Text(
+                  'FUN QUIZ',
+                  style: TextStyle(
+                    color: c.accentSoftText,
+                    fontSize: context.sp(12),
+                    fontWeight: FontWeight.w700,
+                    letterSpacing: 1,
+                  ),
                 ),
               ),
-            );
-          },
+            ),
+            SizedBox(height: context.sz(20)),
+            Center(
+              child: Text(
+                'Uji Pengetahuanmu!',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: context.sp(28),
+                  fontWeight: FontWeight.w700,
+                  color: c.textPrimary,
+                ),
+              ),
+            ),
+            SizedBox(height: context.sz(12)),
+            Center(
+              child: Text(
+                'Jawab pertanyaan, kumpulkan poin, '
+                'dan lihat seberapa hebat dirimu.',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: context.sp(14),
+                  height: 1.7,
+                  color: c.textSecondary,
+                ),
+              ),
+            ),
+            SizedBox(height: context.sz(32)),
+            Text(
+              'Siapa namamu?',
+              style: TextStyle(
+                fontSize: context.sp(15),
+                fontWeight: FontWeight.w600,
+                color: c.textPrimary,
+              ),
+            ),
+            SizedBox(height: context.sz(12)),
+            TextField(
+              controller: _nameController.value,
+              textCapitalization: TextCapitalization.words,
+              textInputAction: TextInputAction.done,
+              onSubmitted: (_) => _startQuiz(),
+              style: TextStyle(
+                fontSize: context.sp(15),
+                color: c.textPrimary,
+              ),
+              decoration: InputDecoration(
+                hintText: 'Masukkan nama kamu',
+                hintStyle: TextStyle(
+                  fontSize: context.sp(15),
+                  color: c.textHint,
+                ),
+                prefixIcon: Icon(
+                  Icons.person_outline,
+                  color: AppColors.primary,
+                  size: context.sz(24),
+                ),
+                filled: true,
+                fillColor: c.surface,
+                contentPadding: EdgeInsets.symmetric(
+                  horizontal: context.sz(18),
+                  vertical: context.sz(18),
+                ),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(fieldRadius),
+                  borderSide: BorderSide(color: c.border),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(fieldRadius),
+                  borderSide: BorderSide(color: c.border),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(fieldRadius),
+                  borderSide: const BorderSide(
+                    color: AppColors.primary,
+                    width: 1.5,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: context.sz(20)),
+            PrimaryButton(
+              text: 'Mulai Quiz',
+              icon: Icons.arrow_forward_rounded,
+              onPressed: _startQuiz,
+            ),
+            SizedBox(height: context.sz(20)),
+            Center(
+              child: Text(
+                'Siap untuk tantangan hari ini?',
+                style: TextStyle(
+                  fontSize: context.sp(12),
+                  color: c.textHint,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
