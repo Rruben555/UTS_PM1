@@ -7,9 +7,9 @@ NIM : 241401040
 Lab : PM 1
 
 
-Informasi Aplikasi
+## Informasi Aplikasi
 
-## Nama Aplikasi: Fun Quiz
+Nama Aplikasi: **Fun Quiz**
 
 Aplikasi kuis pilihan ganda berbasis Flutter. Pengguna memasukkan nama, menjawab serangkaian pertanyaan, lalu melihat skor akhir beserta pembahasan setiap soal.
 
