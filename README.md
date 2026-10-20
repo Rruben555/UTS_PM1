@@ -20,6 +20,6 @@ Fitur:
 * Dark mode dan light mode
 * Tampilan responsif untuk HP, tablet, dan web
 
-Link Video:
+Link Video: https://drive.google.com/file/d/1sPPV7BgFDM0-aE-XZM5VAL8RkA2xbH-M/view?usp=sharing
 
-Link Screenshot:
+Link Screenshot: https://github.com/Rruben555/UTS_PM1/tree/main/screenshots
