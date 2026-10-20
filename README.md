@@ -1,15 +1,15 @@
 # Fun Quiz
-Identitas Mahasiswa
+## Identitas Mahasiswa
 Nama : Ruben Sorisena Siregar
 NIM : 241401040
 Lab : PM 1
 Informasi Aplikasi
 
-Nama Aplikasi: Fun Quiz
+## Nama Aplikasi: Fun Quiz
 
-Deskripsi: Aplikasi kuis pilihan ganda berbasis Flutter. Pengguna memasukkan nama, menjawab serangkaian pertanyaan, lalu melihat skor akhir beserta pembahasan setiap soal.
+Aplikasi kuis pilihan ganda berbasis Flutter. Pengguna memasukkan nama, menjawab serangkaian pertanyaan, lalu melihat skor akhir beserta pembahasan setiap soal.
 
-Fitur:
+## Fitur:
 
 * Input nama pengguna sebelum memulai kuis
 * 5 pertanyaan pilihan ganda (data dummy lokal)
@@ -20,6 +20,11 @@ Fitur:
 * Dark mode dan light mode
 * Tampilan responsif untuk HP, tablet, dan web
 
-Link Video: https://drive.google.com/file/d/1sPPV7BgFDM0-aE-XZM5VAL8RkA2xbH-M/view?usp=sharing
+## Credit
 
-Link Screenshot: https://github.com/Rruben555/UTS_PM1/tree/main/screenshots
+* **Font:** Poppins (Indian Type Foundry) melalui [Google Fonts](https://fonts.google.com/specimen/Poppins), lisensi SIL Open Font License.
+* **Ikon:** [Material Icons](https://fonts.google.com/icons) (Google), bawaan Flutter, lisensi Apache 2.0.
+
+**Link Video**: https://drive.google.com/file/d/1sPPV7BgFDM0-aE-XZM5VAL8RkA2xbH-M/view?usp=sharing
+
+**Link Screenshot**: https://github.com/Rruben555/UTS_PM1/tree/main/screenshots
